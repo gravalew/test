@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Closed tasks</title>
+		<meta charset = "utf-8">
+		<link rel="stylesheet" href="css/style.min.css" />
+  		<link rel="shortcut icon" href="favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<style>
+.template-add-number {
+  margin: 5px;
+  border: 4px double #000;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+}
+.template-add-number div {
+  margin-left: 1%;
+}
+.template-add-number div:first-child {
+  margin-left: 0;
+}
+.template-add-number__textarea {
+  flex: 1 1 200px;
+}
+
+.template-add-number-ready {
+  border: 2px solid #aaaaaa;
+  background: #efefef;
+  width: 100%;
+}
+
+.tamplate-inputs {
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+}
+.template-input {
+  padding: 12px 10px;
+  margin: 5px 0;
+  box-sizing: border-box;
+  border: 2px solid #aaaaaa;
+  border-radius: 4px;
+}
+.template-number {
+}
+.template-ready {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  max-width: 25%;
+  word-wrap: break-word;
+  background: #efefef;
+}
+.template-ready p {
+  margin-bottom: 10px;
+}
+.template-ready p:last-child {
+  margin-bottom: 0;
+}
+.template-ready-panel-id {
+}
+.template-ready-number {
+}
+.template-ready-defaultuser {
+}
+.template-ready-fromuser {
+}
+.template-ready-secret {
+}
+.template-ready-host {
+}
+.template-ready-fromdomain {
+}
+.template-reg-login {
+}
+.template-reg-secret {
+}
+.template-reg-domain {
+}
+.template-reg-number {
+}
+.template-add-number-ready {
+}
+#getFromInput {
+  padding: 12px 20px;
+  background: #fff;
+  width: 100%;
+  border: 1px solid #aaaaaa;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+#getFromInput:hover {
+  background: #eee;
+  transition: all 1s ease 0s;
+}
+#getFromInput:active {
+  background: #999;
+  color: #fff;
+  transition: all 1s ease 0s;
+}
+</style>
+	</head>
+	<body>
+		<header class="header">
+  <div class="header__content _container">
+    <h1 class="header__title">
+      <a href="#">Закрытые задачи</a>
+    </h1>
+    <form>
+      <input class="input" id="RMuid" type="text" size="4" autocomplete="on" />
+      <button class="button" id="button_today" onclick="btclick ()">
+        <span>Сегодня (Личные)</span>
+      </button>
+      <button class="button" id="button_yesterday" onclick="byclick ()">
+        <span>Вчера (Личные)</span>
+      </button>
+      <button class="button" id="button_2" onclick="bqclick ()">
+        <span>Сегодня (130+118)</span>
+      </button>
+      <button class="button" id="button_3" onclick="bzclick ()">
+        <span>Все время (Личные)</span>
+      </button>
+      <input class="button" id="closed_date" type="date" />
+      <button class="button" id="go" onclick="bgoclick ()">
+        <span>Го!</span>
+      </button>
+      <button class="button" onclick="uidreset ()">
+        <span>Сбросить логин</span>
+      </button>
+    </form>
+  </div>
+</header>
+
+	<div class="template-add-number">
+      <div class="template-add-number__textarea">
+<textarea name="template-add-number-ready" class="template-add-number-ready" cols="40" rows="17"></textarea>
+      </div>
+      <div class="tamplate-inputs">
+        <input
+          class="template-input"
+          type="text"
+          autocomplete="on"
+          maxlength="5"
+          id="template-company-id"
+          placeholder="Panel ID"
+        />
+        <input
+          class="template-input template-number"
+          type="text"
+          id="template-number"
+          placeholder="Номер"
+        />
+        <input
+          class="template-input"
+          type="text"
+          id="template-login"
+          placeholder="Логин"
+        />
+        <input
+          class="template-input"
+          type="text"
+          id="template-secret"
+          placeholder="Пароль"
+        />
+        <input
+          class="template-input"
+          type="text"
+          id="template-host"
+          autocomplete="on"
+          placeholder="Домен или IP адрес"
+        />
+      </div>
+      <div class="template-ready">
+        <p>Просьба добавить для:</p>
+        <p>
+          <span
+            >https://panel.binotel.com/?module=pbxNumbersEnhanced&action=edit&companyID=</span
+          ><span class="template-ready-panel-id"></span>
+        </p>
+        <p>Номер <span class="template-ready-number">number</span></p>
+        <p>
+          <span
+            >defaultuser =
+            <span class="template-ready-defaultuser">login</span></span
+          ><br />
+          <span
+            >fromuser = <span class="template-ready-fromuser">login</span></span
+          ><br />
+          <span>secret = <span class="template-ready-secret">secret</span></span
+          ><br />
+          <span>host = <span class="template-ready-host">host</span></span
+          ><br />
+          <span
+            >fromdomain =
+            <span class="template-ready-fromdomain">fromdomain</span></span
+          >
+        </p>
+        <p>
+          register => <span class="template-reg-login">login</span>:<span
+            class="template-reg-secret"
+            >secret</span
+          >@<span class="template-reg-domain">domain</span>/<span
+            class="template-reg-number"
+            >number</span
+          >
+        </p>
+        <p><input type="button" value="Создать" id="getFromInput" /></p>
+      </div>
+      <div class="template-add-number__textarea">
+     <textarea name="template-add-number-ready" class="template-add-number-ready" cols="40" rows="17"></textarea>
+      </div>
+    </div>
+	</body>
+	
+	
+<script>
+let templateNumber = document.querySelector('.template-ready-number');
+let templateDefaultuser = document.querySelector('.template-ready-defaultuser');
+let templateFromuser = document.querySelector('.template-ready-fromuser');
+let templateSecret = document.querySelector('.template-ready-secret');
+let templateHost = document.querySelector('.template-ready-host');
+let templateFromdomain = document.querySelector('.template-ready-fromdomain');
+let templateRegNumber = document.querySelector('.template-reg-number');
+let templateRegLogin = document.querySelector('.template-reg-login');
+let templateRegSecret = document.querySelector('.template-reg-secret');
+let templateRegDomain = document.querySelector('.template-reg-domain');
+let templatePanelId = document.querySelector('.template-ready-panel-id');
+var items = ['значение1', 'значение2', 'значение3', 'значение4', 'значение5'];
+//inputs
+var number = document.getElementById('template-number');
+var login = document.getElementById('template-login');
+var secret = document.getElementById('template-secret');
+var host = document.getElementById('template-host');
+var companyId = document.getElementById('template-company-id');
+//button
+var getFromInput = document.getElementById('getFromInput');
+getFromInput.onclick = function () {
+  items[0] = number.value;
+  items[1] = login.value;
+  items[2] = secret.value;
+  items[3] = host.value;
+  items[4] = companyId.value;
+
+  templateNumber.textContent = number.value;
+  templateDefaultuser.textContent = login.value;
+  templateFromuser.textContent = login.value;
+  templateSecret.textContent = secret.value;
+  templateHost.textContent = host.value;
+  templateFromdomain.textContent = host.value;
+  templateRegNumber.textContent = number.value;
+  templateRegLogin.textContent = login.value;
+  templateRegSecret.textContent = secret.value;
+  templateRegDomain.textContent = host.value;
+  templatePanelId.textContent = companyId.value;
+};
+</script>
+<script src="js/app.min.js"></script>
+</html>
+
